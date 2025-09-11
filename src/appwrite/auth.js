@@ -28,11 +28,11 @@ export class AuthService {
 
             if (userAccount) {
                 //login
-                await this.login({ email, password })
+                  await this.login({ email, password })
             }
-            else {
-                return userAccount;
-            }
+           
+            return userAccount;
+            
         } catch (error) {
             console.log("appwrite service :: createAccount error :: ", error)
         }

@@ -1,5 +1,6 @@
 import React, {useId} from 'react'
 
+//syntax of forwardRef
 const Input = React.forwardRef( function Input({
     label,
     type = "text",
@@ -27,3 +28,5 @@ const Input = React.forwardRef( function Input({
 })
 
 export default Input
+//another syntax of forwardRef (see Select.jsx)
+// export default React.forwardRef(Input)

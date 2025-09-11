@@ -1,11 +1,11 @@
 
 import './App.css'
 import conf from './config/conf'
-import { Header, Footer } from './components'
+import { Header, Footer,Login,Signup } from './components'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import authService from "./appwrite/auth"
-import { login, logout } from './store/authSlice'
+import { login as storeLogin, logout as storeLogout} from './store/authSlice'
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -15,9 +15,9 @@ function App() {
     authService.getCurrentUser()
       .then((userData) => {
         if (userData) {
-          dispatch(login({ userData }));
+          dispatch(storeLogin({ userData }));
         } else {
-          dispatch(logout());
+          dispatch(storeLogout());
         }
 
       })
@@ -26,10 +26,9 @@ function App() {
   }
     , [])
 
-  return (
-  // loading ? (
-  //   null
-  // ) : (
+  return  loading ? (
+    null
+  ) : (
     <div className='min-h-screen flex flex-wrap   bg-slate-800 text-white '>
       <div className='w-full flex flex-col '>
         <Header />
@@ -41,13 +40,7 @@ function App() {
     </div>
   )
 
-  // return (
-  //   <>
-  //     <Header />
-  //     <p>BlogApp</p>
-  //     <Footer />
-  //   </>
-  // )
+
 }
 
 export default App

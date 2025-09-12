@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import authService from "./appwrite/auth"
 import { login as storeLogin, logout as storeLogout} from './store/authSlice'
+import { Outlet } from 'react-router-dom'
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -33,7 +34,7 @@ function App() {
       <div className='w-full flex flex-col '>
         <Header />
         <main>
-            Yet to be implemented {/* <Outlet/> */}
+          <Outlet/>
         </main>
         <Footer />
       </div>

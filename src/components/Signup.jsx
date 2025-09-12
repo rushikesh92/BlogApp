@@ -5,7 +5,7 @@ import { login as storeLogin } from '../store/authSlice'
 import { Button, Input, Select, Logo } from './index'
 import authService from '../appwrite/auth'
 import { set, useForm } from 'react-hook-form'
-function Signup() {
+function  Signup() {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();

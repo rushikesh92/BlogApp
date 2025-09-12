@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { login as storeLogin } from '../store/authSlice'
@@ -25,7 +25,7 @@ function Login() {
                 navigate("/")
             }
         } catch (error) {
-            setError(error);
+            setError(error.message || "Something went wrong");
         }
     }
     return (
@@ -58,13 +58,13 @@ function Login() {
                             type='email'
 
                             //using react-hook-form
-                            { ...register('email',{
-                                    required: true,
-                                    validate: {
-                                        matchPattern: (value) => /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
-                                            .test(value) || "Email address must be valid"
-                                    }
-                                })
+                            {...register('email', {
+                                required: true,
+                                validate: {
+                                    matchPattern: (value) => /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
+                                        .test(value) || "Email address must be valid"
+                                }
+                            })
                             }
                         />
                     </div>
@@ -73,13 +73,13 @@ function Login() {
                             label='Password: '
                             placeholder='Enter your password'
                             type='password'
-                            {...register('password',{
-                                     required: true,
-                                })
+                            {...register('password', {
+                                required: true,
+                            })
                             }
                         />
                     </div>
-                            <Button type='submit' className='w-full'>Sign-In</Button>
+                    <Button type='submit' className='w-full'>Sign-In</Button>
                 </form>
 
             </div>

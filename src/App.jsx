@@ -14,9 +14,11 @@ function App() {
 
   useEffect(() => {
     authService.getCurrentUser()
-      .then((userData) => {
+    .then((userData) => {
+        console.log("Fetched userData:", userData); 
         if (userData) {
-          dispatch(storeLogin({ userData }));
+
+          dispatch(storeLogin(userData));
         } else {
           dispatch(storeLogout());
         }
@@ -30,7 +32,7 @@ function App() {
   return  loading ? (
     null
   ) : (
-    <div className='min-h-screen flex flex-wrap   bg-slate-800 text-white '>
+    <div className='min-h-screen flex flex-wrap   bg-gradient-to-br from-blue-800  to-slate-800 text-white '>
       <div className='w-full flex flex-col '>
         <Header />
         <main>

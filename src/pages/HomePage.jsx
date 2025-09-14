@@ -1,26 +1,40 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import appwriteService from "../appwrite/config";
-import {Container, PostCard} from '../components'
-
+import { Container, PostCard, Hero } from '../components'
+import { useSelector } from 'react-redux';
 function Home() {
     const [posts, setPosts] = useState([])
+    const authStatus = useSelector((state) => state.auth.status)
 
     useEffect(() => {
-        appwriteService.getPosts().then((posts) => {
-            if (posts) {
-                setPosts(posts.documents)
-            }
-        })
-    }, [])
-  
+        if (authStatus) {
+            appwriteService.getPosts().then((posts) => {
+                if (posts) {
+                    setPosts(posts.documents)
+                }
+            })
+        }
+        else{
+            setPosts([])
+        }
+    }, [authStatus])
+
+
     if (posts.length === 0) {
         return (
-            <div className="w-full py-8 mt-4 text-center">
+            <div className="w-full py-8 mt-4 text-center min-h-[50vh] ">
+                <Hero />
                 <Container>
-                    <div className="flex flex-wrap">
+
+                    <div className="flex flex-wrap mt-10">
                         <div className="p-2 w-full">
-                            <h1 className="text-2xl font-bold hover:text-gray-500">
-                                No posts are available
+                            <h1 className="text-xl  hover:text-gray-300">
+                                {
+                                    authStatus && <p>No posts available</p>
+                                }
+                                {
+                                    !authStatus && <p>Login to explore hundreds of Blogs</p>
+                                }
                             </h1>
                         </div>
                     </div>
@@ -29,10 +43,12 @@ function Home() {
         )
     }
     return (
-        <div className='w-full py-8'>
+        <div className='w-full py-8 min-h-[50vh]  flex flex-col items-center justify-center gap-10'>
+            <Hero />
             <Container>
-                <div className='flex flex-wrap'>
-                    {posts.map((post) => (
+                <h1 className='text-2xl font-bold text-center'>Blogs for you</h1>
+                <div className='flex flex-wrap mt-3'>
+                    {posts.length > 0 && posts.map((post) => (
                         <div key={post.$id} className='p-2 w-1/4'>
                             <PostCard {...post} />
                         </div>

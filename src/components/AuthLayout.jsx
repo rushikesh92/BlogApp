@@ -28,7 +28,7 @@ export default function Protected({ children, requiresAuth = true }) {
         }
         setLoader(false);
     }, [authStatus, navigate, requiresAuth])
-    return loader ? <h1>Loading...</h1> : <>{children}</>
+    return loader ? <h1 className='min-h-[50vh] text-center'>Loading...</h1> : <>{children}</>
 }
 
 

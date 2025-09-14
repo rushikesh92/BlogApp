@@ -13,6 +13,7 @@ export default function Post() {
     const userData = useSelector((state) => state.auth.userData);
 
     const isAuthor = post && userData ? post.userId === userData.$id : false;
+    console.log("post.userId:", post?.userId, "userData.$id:", userData?.$id, "isAuthor:", isAuthor);
 
     useEffect(() => {
         if (slug) {
@@ -31,11 +32,11 @@ export default function Post() {
             }
         });
     };
-
     return post ? (
-        <div className="py-8">
+        <div className="py-8 min-h-[50vh] ">
             <Container>
-                <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
+               <div className="bg-blue-300/10 p-4 rounded-4xl">
+                 <div className="w-full flex justify-center mb-4 relative  rounded-xl p-2">
                     <img
                         src={appwriteService.getFilePreview(post.featuredImage)}
                         alt={post.title}
@@ -43,7 +44,7 @@ export default function Post() {
                     />
 
                     {isAuthor && (
-                        <div className="absolute right-6 top-6">
+                        <div className="absolute right-0 top-0">
                             <Link to={`/edit-post/${post.$id}`}>
                                 <Button bgColor="bg-green-500" className="mr-3">
                                     Edit
@@ -61,6 +62,7 @@ export default function Post() {
                 <div className="browser-css">
                     {parse(post.content)}
                     </div>
+               </div>
             </Container>
         </div>
     ) : null;

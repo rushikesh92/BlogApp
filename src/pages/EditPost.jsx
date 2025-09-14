@@ -9,8 +9,9 @@ function EditPost() {
 
     const navigate = useNavigate();
 
-    const slug = useParams();//extract slug from url clicked by user
-
+    const slugObj = useParams();//extract slug from url clicked by user
+    const slug =slugObj.slug;
+    
     useEffect(() => {
         if (slug) {
             appwriteService.getPost(slug).then((post) => {

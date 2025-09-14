@@ -36,11 +36,16 @@ function Header() {
             slug:"/add-post",
             active:authStatus
         },
+        {
+            name:'Profile',
+            slug:"/profile",
+            active:authStatus
+        },
 
         
     ]
   return (
-    <header className='py-6 shadow bg-slate-900 w-full '>
+    <header className='py-6 shadow bg-slate-900/30 w-full '>
         <Container>
             <nav className='flex'>
                 <div className='mr-4'>
@@ -51,9 +56,10 @@ function Header() {
                 <ul className='flex ml-auto place-content-around gap-5'>
                     {navItems.map((item)=>(
                         item.active?(
-                            <li key={item.name}>
+                            <li key={item.name} >
                                 <button
                                     onClick={()=> navigate(item.slug)}
+                                    className='p-2 cursor-pointer hover:text-blue-400'
                                 >{item.name}</button>
                             </li>
                         ) : null

@@ -41,7 +41,7 @@ export class Service {
         }
     }
 
-    async updatePost(slug, { title,content, featuredImage, status }) {
+    async updatePost(slug, { title, content, featuredImage, status }) {
         try {
 
             return await this.databases.updateDocument(
@@ -82,7 +82,7 @@ export class Service {
     }
 
     async getPost(slug) {
-
+        console.log("getpost slug", slug);
         try {
             return await this.databases.getDocument(
                 conf.appwriteDatabaseId,
@@ -144,11 +144,14 @@ export class Service {
             return false;
         }
     }
-    getFilePreview(fileId){
-        return this.bucket.getFilePreview(
-            conf.appwriteBucketId,
+    getFilePreview(fileId) {
+
+        const result = this.bucket.getFileView({
+            bucketId:conf.appwriteBucketId,
             fileId
-        )
+        });
+        console.log(result);
+        return result;
     }
 }
 

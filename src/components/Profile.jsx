@@ -7,7 +7,7 @@ function Profile() {
     let userData=null;
     if(authStatus){
                  userData = useSelector((state) => state.auth.userData)
-                 console.log(userData)
+                //  console.log(userData)
     }
 
     if (!userData) {

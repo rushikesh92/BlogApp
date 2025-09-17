@@ -11,9 +11,11 @@ function  Signup() {
   const dispatch = useDispatch();
   const {register, handleSubmit} = useForm();
   const [error, setError] = useState("");
+    const [signupDisabled, setSignupDisabled] = useState(false);
 
   const signup = async (data) => {
     setError("");
+    setSignupDisabled(true);
     try {
       const userAccount = authService.createAccount(data);
 
@@ -27,6 +29,7 @@ function  Signup() {
       }
     } catch (error) {
       setError(error)
+      setSignupDisabled(false);
     }
   }
   return (
@@ -91,7 +94,7 @@ function  Signup() {
               }
             />
           </div>
-          <Button type='submit' className='w-full'>Create Account</Button>
+          <Button type='submit' className='w-full' isDisabled={signupDisabled}>Create Account</Button>
         </form>
 
       </div>

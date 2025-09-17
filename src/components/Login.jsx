@@ -12,9 +12,11 @@ function Login() {
     const dispatch = useDispatch();
     const { register, handleSubmit } = useForm();
     const [error, setError] = useState("")
+    const [loginDisabled, setLoginDisabled] = useState(false);
 
     const login = async (data) => {
         setError("");
+        setLoginDisabled(true)
         try {
             const session = await authService.login(data);
             if (session) {
@@ -26,6 +28,8 @@ function Login() {
             }
         } catch (error) {
             setError(error.message || "Something went wrong");
+            setLoginDisabled(false)
+
         }
     }
     return (
@@ -79,7 +83,7 @@ function Login() {
                             }
                         />
                     </div>
-                    <Button type='submit' className='w-full'>Sign-In</Button>
+                    <Button type='submit' className='w-full' isDisabled={loginDisabled}>Sign-In</Button>
                 </form>
 
             </div>

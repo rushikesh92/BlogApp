@@ -9,11 +9,13 @@ export default function Post() {
     const [post, setPost] = useState(null);
     const { slug } = useParams();
     const navigate = useNavigate();
+      const [deleteDisabled,setDeleteDisabled]=useState(false);
+    
 
     const userData = useSelector((state) => state.auth.userData);
 
     const isAuthor = post && userData ? post.userId === userData.$id : false;
-    console.log("post.userId:", post?.userId, "userData.$id:", userData?.$id, "isAuthor:", isAuthor);
+    // console.log("post.userId:", post?.userId, "userData.$id:", userData?.$id, "isAuthor:", isAuthor);
 
     useEffect(() => {
         if (slug) {
@@ -25,6 +27,7 @@ export default function Post() {
     }, [slug, navigate]);
 
     const deletePost = () => {
+        setDeleteDisabled(true);
         appwriteService.deletePost(post.$id).then((status) => {
             if (status) {
                 appwriteService.deleteFile(post.featuredImage);
@@ -50,7 +53,7 @@ export default function Post() {
                                     Edit
                                 </Button>
                             </Link>
-                            <Button bgColor="bg-red-500" onClick={deletePost}>
+                            <Button bgColor="bg-red-500" onClick={deletePost} isDisabled={deleteDisabled}>
                                 Delete
                             </Button>
                         </div>

@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
@@ -7,6 +7,8 @@ import appwriteService from '../../appwrite/config'
 
 
 function PostForm({ post }) {
+
+  const [buttonDisabled,setButtonDisabled]=useState(false);
 
   const { register, handleSubmit, watch, setValue, control, getValues, reset } = useForm(
     {
@@ -49,6 +51,7 @@ function PostForm({ post }) {
   const userData = useSelector((state) => state.auth.userData);
 
   const submit = async (data) => {
+    setButtonDisabled(true);
     if (post) {//if post already exists(provided while using this form )
 
       const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null//upload file in appwrite storage
@@ -159,7 +162,7 @@ function PostForm({ post }) {
           className="mb-4"
           {...register("status", { required: true })}
         />
-        <Button type="submit" bgColor={post ? "bg-green-500" : undefined} className="w-full">
+        <Button type="submit" bgColor={post ? "bg-green-500" : undefined} className="w-full" isDisabled={buttonDisabled}>
           {post ? "Update" : "Submit"}
         </Button>
       </div>

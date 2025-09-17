@@ -2,22 +2,10 @@ import React, { useEffect, useState } from 'react'
 import appwriteService from "../appwrite/config";
 import { Container, PostCard, Hero } from '../components'
 import { useSelector } from 'react-redux';
-function Home() {
-    const [posts, setPosts] = useState([])
-    const authStatus = useSelector((state) => state.auth.status)
 
-    useEffect(() => {
-        if (authStatus) {
-            appwriteService.getPosts().then((posts) => {
-                if (posts) {
-                    setPosts(posts.documents)
-                }
-            })
-        }
-        else{
-            setPosts([])
-        }
-    }, [authStatus])
+function Home() {
+    const authStatus = useSelector((state) => state.auth.status)
+    const posts = useSelector((state)=>(state.post.posts));
 
 
     if (posts.length === 0) {

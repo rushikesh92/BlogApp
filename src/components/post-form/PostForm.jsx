@@ -63,6 +63,7 @@ function PostForm({ post }) {
       const dbPost = await appwriteService.updatePost
         (post.$id, {
           ...data,
+          creator : userData.name,
           featuredImage: file ? file.$id : post.featuredImage
         })
       //(post.$id gives slug i.e. id of post from appwrite(using $ is appwrite syntax) )
@@ -84,7 +85,8 @@ function PostForm({ post }) {
           data.featuredImage = file.$id;
           const dbPost = await appwriteService.createPost({
             ...data,
-            userId: userData.$id
+            userId: userData.$id,
+            creator : userData.name
           })
           //redirect
           if (dbPost) {

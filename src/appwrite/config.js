@@ -20,7 +20,7 @@ export class Service {
 
     //Blog Services
 
-    async createPost({ title, slug, content, featuredImage, status, userId }) {
+    async createPost({ title, slug, content, featuredImage, status, userId ,creator}) {
         try {
             return await this.databases.createDocument(
                 conf.appwriteDatabaseId,
@@ -32,7 +32,8 @@ export class Service {
                     content,
                     featuredImage,
                     status,
-                    userId
+                    userId,
+                    creator
                 }
             );
         } catch (error) {
@@ -41,7 +42,7 @@ export class Service {
         }
     }
 
-    async updatePost(slug, { title, content, featuredImage, status }) {
+    async updatePost(slug, { title, content, featuredImage, status,creator }) {
         try {
 
             return await this.databases.updateDocument(
@@ -53,6 +54,7 @@ export class Service {
                     content,
                     featuredImage,
                     status,
+                    creator
                 }
 
             )
@@ -82,7 +84,7 @@ export class Service {
     }
 
     async getPost(slug) {
-        console.log("getpost slug", slug);
+        // console.log("getpost slug", slug);
         try {
             return await this.databases.getDocument(
                 conf.appwriteDatabaseId,
@@ -150,7 +152,7 @@ export class Service {
             bucketId:conf.appwriteBucketId,
             fileId
         });
-        console.log(result);
+        // console.log(result);
         return result;
     }
 }

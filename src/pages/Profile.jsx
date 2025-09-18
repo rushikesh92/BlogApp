@@ -17,7 +17,7 @@ function Profile() {
 
     return (
 
-        <div className="py-8 min-h-[50vh]">
+        <div className="py-8 min-h-[65vh]">
             <Container>
                 {!authStatus || !userData ? (
                     <p className="text-center">Please login to view your profile.</p>

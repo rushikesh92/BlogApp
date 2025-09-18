@@ -14,7 +14,7 @@ export default function Info() {
   }, [location]);
 
   return (
-    <div className="min-h-screen text-white flex flex-col bg-gradient-to-b from-slate-700/30 via-slate-800/10 to-slate-800/30">
+    <div className="min-h-screen text-white flex flex-col bg-slate-800/30">
       
       {/* Features */}
       <section id="features" className="p-10 border-b border-blue-600/40">
@@ -44,10 +44,7 @@ export default function Info() {
         <h2 className="text-3xl font-bold mb-6 text-blue-300">❓ FAQs</h2>
         <div className="space-y-6">
           {[
-            {
-              q: "Is this app really free?",
-              a: "Yes. The app is completely free of cost. You don’t need to pay for registration or using its features."
-            },
+           
             {
               q: "Do I need to create an account?",
               a: "Yes, creating an account is required so you can manage your profile, posts, and preferences securely."
@@ -63,7 +60,7 @@ export default function Info() {
           ].map((item, idx) => (
             <div
               key={idx}
-              className="bg-blue-800/40 p-5 rounded-lg shadow-md hover:shadow-blue-500/30 transition"
+              className="bg-gray-500/20 p-5 rounded-lg shadow-md "
             >
               <h3 className="font-semibold text-xl mb-2">{idx + 1}. {item.q}</h3>
               <p className="text-gray-300">{item.a}</p>

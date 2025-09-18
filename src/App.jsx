@@ -49,7 +49,7 @@ function App() {
   return  loading ? (
     null
   ) : (
-    <div className='min-h-screen flex flex-wrap   bg-gradient-to-br from-blue-800  to-slate-800 text-white '>
+    <div className='min-h-screen flex flex-wrap   bg-gradient-to-br from-black  to-blue-950 text-white '>
       <div className='w-full flex flex-col '>
         <Header />
         <main>

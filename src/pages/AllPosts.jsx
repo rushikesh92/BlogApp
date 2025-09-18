@@ -7,9 +7,9 @@ function AllPosts() {
     const posts = useSelector((state)=>(state.post.posts));
 
   return (
-    <div className="w-full py-8 min-h-[50vh]">
+    <div className="w-full py-5  min-h-[65vh]">
         <Container>
-            <h1 className='text-2xl font-bold text-center my-3'>All Posts</h1>
+            <h1 className='text-2xl font-bold text-center my-6'>Blogs For You</h1>
             <div className="flex flex-wrap gap-2">
                 {posts.length === 0 && <p>No posts found.</p>}
                 {posts.map((post)=>(

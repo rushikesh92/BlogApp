@@ -27,12 +27,12 @@ function Header() {
             active:!authStatus
         },
         {
-            name:'All Posts',
+            name:'Blogs',
             slug:"/all-posts",
             active:authStatus
         },
         {
-            name:'Add Post',
+            name:'Create Blog',
             slug:"/add-post",
             active:authStatus
         },
@@ -45,7 +45,7 @@ function Header() {
         
     ]
   return (
-    <header className='py-6 shadow bg-slate-900/30 w-full '>
+    <header className='py-6 shadow bg-gray-900/20 w-full '>
         <Container>
             <nav className='flex'>
                 <div className='mr-4'>

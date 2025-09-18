@@ -121,7 +121,7 @@ function PostForm({ post }) {
       <div className="w-2/3 px-2">
 
 
-        <h1 className='font-bold text-xl mt-2 mb-2'> {post ? "Update post" : "Create Post"}</h1>
+        <h1 className='font-bold text-xl mt-2 mb-2'> {post ? "Update Blog" : "Create Blog"}</h1>
         <Input
           label="Title :"
           placeholder="Title"

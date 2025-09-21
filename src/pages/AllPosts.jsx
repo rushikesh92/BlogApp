@@ -10,10 +10,10 @@ function AllPosts() {
     <div className="w-full py-5  min-h-[65vh]">
         <Container>
             <h1 className='text-2xl font-bold text-center my-6'>Blogs For You</h1>
-            <div className="flex flex-wrap gap-2">
+            <div className="w-full flex flex-wrap gap-2   justify-evenly">
                 {posts.length === 0 && <p>No posts found.</p>}
                 {posts.map((post)=>(
-                    <div key={post.$id} className='w-1/3'>
+                    <div key={post.$id} className='w-1/4'>
                         <PostCard {...post} />
                     </div>
                 ))}
